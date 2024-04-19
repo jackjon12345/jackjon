@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package admin;
+package user;
 
+import admin.*;
 import javax.swing.JOptionPane;
 import testappd.loginForm;
 
@@ -12,12 +13,12 @@ import testappd.loginForm;
  *
  * @author SCC-COLLEGE
  */
-public class admindashboard extends javax.swing.JFrame {
+public class usersdashboard extends javax.swing.JFrame {
 
     /**
      * Creates new form admindashboard
      */
-    public admindashboard() {
+    public usersdashboard() {
         initComponents();
     }
 
@@ -55,7 +56,7 @@ public class admindashboard extends javax.swing.JFrame {
 
         acc_name.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         acc_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acc_name.setText("ADMIN");
+        acc_name.setText("USER");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -87,7 +88,7 @@ public class admindashboard extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ADMIN DASHBOARD");
+        jLabel1.setText("USERS DASHBOARD");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -124,11 +125,6 @@ public class admindashboard extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(51, 51, 255));
 
         jPanel5.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel5MouseClicked(evt);
-            }
-        });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-user-50.png"))); // NOI18N
@@ -212,16 +208,10 @@ public class admindashboard extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         loginForm ads = new loginForm();
-        JOptionPane.showMessageDialog(null, "Logout Success!");
+        JOptionPane.showMessageDialog(null, "Logout Success");
         ads.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-        usersForm usf = new usersForm();
-        usf.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jPanel5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -240,20 +230,21 @@ public class admindashboard extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(admindashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(usersdashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(admindashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(usersdashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(admindashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(usersdashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(admindashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(usersdashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new admindashboard().setVisible(true);
+                new usersdashboard().setVisible(true);
             }
         });
     }
