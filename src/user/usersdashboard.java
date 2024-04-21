@@ -6,6 +6,7 @@
 package user;
 
 import admin.*;
+import config.Session;
 import javax.swing.JOptionPane;
 import testappd.loginForm;
 
@@ -46,6 +47,11 @@ public class usersdashboard extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setLayout(null);
 
@@ -224,6 +230,19 @@ public class usersdashboard extends javax.swing.JFrame {
        usf.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Session sess = Session.getInstance();
+        if(sess.getUid() == 0){
+           JOptionPane.showMessageDialog(null, "No account, Login First!"); 
+           loginForm lf = new loginForm();
+           lf.setVisible(true);
+           this.dispose();
+        }else{
+            acc_name.setText(""+sess.getFname());
+   
+    }        
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
