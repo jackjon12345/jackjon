@@ -7,8 +7,11 @@ package admin;
 
 import config.Session;
 import config.dbConnector;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -24,11 +27,14 @@ public class usersForm extends javax.swing.JFrame {
         initComponents();
         displayData();
     }
-
+       Color navcolor = new Color(204,204,255);
+       Color hovercolor = new Color(204,255,204);
+    
+    
     public void displayData(){
         try{
             dbConnector dbc = new dbConnector();
-            ResultSet rs = dbc.getData("SELECT u_id, u_fname, u_lname, u_email FROM tbl_user");
+            ResultSet rs = dbc.getData("SELECT u_id, u_fname, u_lname, u_email, u_status FROM tbl_user");
             usersTable.setModel(DbUtils.resultSetToTableModel(rs));
              rs.close();
         }catch(SQLException ex){
@@ -51,9 +57,13 @@ public class usersForm extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        acc_name = new javax.swing.JLabel();
         acc_id = new javax.swing.JLabel();
         acc_name2 = new javax.swing.JLabel();
+        p_add = new javax.swing.JPanel();
+        acc_name3 = new javax.swing.JLabel();
+        acc_name = new javax.swing.JLabel();
+        p_add1 = new javax.swing.JPanel();
+        acc_name1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -75,10 +85,6 @@ public class usersForm extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-user-50.png"))); // NOI18N
 
-        acc_name.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        acc_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acc_name.setText("USER");
-
         acc_id.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         acc_id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acc_id.setText("ID");
@@ -87,29 +93,83 @@ public class usersForm extends javax.swing.JFrame {
         acc_name2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acc_name2.setText("Current User:");
 
+        p_add.setBackground(new java.awt.Color(204, 204, 255));
+        p_add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                p_addMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                p_addMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                p_addMouseExited(evt);
+            }
+        });
+        p_add.setLayout(null);
+
+        acc_name3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        acc_name3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        acc_name3.setText("ADD");
+        p_add.add(acc_name3);
+        acc_name3.setBounds(0, 10, 110, 20);
+
+        acc_name.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        acc_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        acc_name.setText("USERS");
+
+        p_add1.setBackground(new java.awt.Color(204, 204, 255));
+        p_add1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                p_add1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                p_add1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                p_add1MouseExited(evt);
+            }
+        });
+        p_add1.setLayout(null);
+
+        acc_name1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        acc_name1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        acc_name1.setText("EDIT");
+        p_add1.add(acc_name1);
+        acc_name1.setBounds(0, 10, 110, 20);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(p_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(acc_name, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(acc_name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(acc_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(acc_name2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(acc_name2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(p_add1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(acc_name)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(p_add, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(p_add1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(acc_name2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(acc_id))
@@ -214,6 +274,62 @@ public class usersForm extends javax.swing.JFrame {
         acc_id.setText(""+sess.getUid());
     }//GEN-LAST:event_formWindowActivated
 
+    private void p_addMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_addMouseExited
+        p_add.setBackground(navcolor);
+
+    }//GEN-LAST:event_p_addMouseExited
+
+    private void p_addMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_addMouseEntered
+        p_add.setBackground(hovercolor);
+    }//GEN-LAST:event_p_addMouseEntered
+
+    private void p_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_addMouseClicked
+       creatUserForm crf = new creatUserForm();
+       crf.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_p_addMouseClicked
+
+    private void p_add1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add1MouseClicked
+         int rowIndex = usersTable.getSelectedRow();
+         
+         if(rowIndex <0){
+            JOptionPane.showMessageDialog(null,"Please select an Item!");
+        }else{
+             try{
+                 dbConnector dbc = new dbConnector();
+                 TableModel tbl = usersTable.getModel();
+                 ResultSet rs=dbc.getData("SELECT * FROM tbl_user WHERE u_id='"+tbl.getValueAt(rowIndex,0)+"'");
+                 if(rs.next()){
+                  creatUserForm crf = new creatUserForm();
+                  crf.uid.setText(""+rs.getString("u_id"));
+                  crf.fn.setText(""+rs.getString("u_fname"));
+                  crf.ln.setText(""+rs.getString("u_lname"));
+                  crf.em.setText(""+rs.getString("u_email"));
+                  crf.un.setText(""+rs.getString("u_username"));
+                  crf.ps.setText(""+rs.getString("u_password"));
+                  crf.ut.setSelectedItem(""+rs.getString("u_type"));
+                  crf.us.setSelectedItem(""+rs.getString("u_status"));
+                  crf.add.setEnabled(false);
+                  crf.update.setEnabled(true);
+                  crf.setVisible(true);
+                  this.dispose();
+                 }
+             }catch(SQLException ex){
+                 System.out.println(""+ex);
+             }
+
+            }
+ 
+    }//GEN-LAST:event_p_add1MouseClicked
+
+    private void p_add1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add1MouseEntered
+        p_add1.setBackground(hovercolor);
+    }//GEN-LAST:event_p_add1MouseEntered
+
+    private void p_add1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add1MouseExited
+        p_add1.setBackground(navcolor);
+    }//GEN-LAST:event_p_add1MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -253,7 +369,9 @@ public class usersForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acc_id;
     private javax.swing.JLabel acc_name;
+    private javax.swing.JLabel acc_name1;
     private javax.swing.JLabel acc_name2;
+    private javax.swing.JLabel acc_name3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
@@ -262,6 +380,8 @@ public class usersForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel p_add;
+    private javax.swing.JPanel p_add1;
     private javax.swing.JTable usersTable;
     // End of variables declaration//GEN-END:variables
 }
