@@ -271,7 +271,7 @@ public class regForm extends javax.swing.JFrame {
         {
         JOptionPane.showMessageDialog(null, "Register Success!");
             loginForm lfr = new loginForm();
-            lfr.setVisible(true);
+            lfr.setVisible(true);   
             this.dispose();
         }else{
         JOptionPane.showMessageDialog(null, "Connection Error!");      

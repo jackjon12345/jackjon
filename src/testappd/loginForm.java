@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,6 +8,8 @@ package testappd;
 import admin.admindashboard;
 import config.Session;
 import config.dbConnector;
+import config.passwordHasher;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -32,10 +34,15 @@ public class loginForm extends javax.swing.JFrame {
     public static boolean loginAcc(String username, String password){
         dbConnector connector = new dbConnector();
         try{
-            String query = "SELECT * FROM tbl_user  WHERE u_username = '" + username + "' AND u_password = '" + password + "'";
+            String query = "SELECT * FROM tbl_user  WHERE u_username = '" + username + "'";
             ResultSet resultSet = connector.getData(query);
-            if(resultSet.next()){        
-            status = resultSet.getString("u_status");
+            if(resultSet.next()){ 
+                
+               
+                String hashedPass = resultSet.getString("u_password");
+                String rehashedPass = passwordHasher.hashPassword(password);
+                if(hashedPass.equals(rehashedPass)){
+             status = resultSet.getString("u_status");
             type = resultSet.getString("u_type");
             Session sess = Session.getInstance();
             sess.setUid(resultSet.getInt("u_id"));
@@ -46,15 +53,16 @@ public class loginForm extends javax.swing.JFrame {
             sess.setType(resultSet.getString("u_type"));
             sess.setStatus(resultSet.getString("u_status"));
             return true;
-        }else{
+            }else{
+            return false;                
+            }
+            }else{
             return false;
-        }
-            
-        }catch (SQLException ex) {
+            }
+            }catch (SQLException | NoSuchAlgorithmException ex) {
             return false;
-        }
-
-    }
+            }
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
