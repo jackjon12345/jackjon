@@ -19,6 +19,7 @@ public class Session {
     private String username;
     private String type;
     private String status;
+    private String tast;
     
     private Session(){
      //Private cons.prevents instance       
@@ -40,6 +41,13 @@ public class Session {
     }
 
     public void setUid(int uid) {
+        this.uid = uid;
+    }
+    public int getTast() {
+        return uid;
+    }
+
+    public void setTast(int uid) {
         this.uid = uid;
     }
 
@@ -90,4 +98,5 @@ public class Session {
     public void setStatus(String status) {
         this.status = status;
     }
+    
 }  
