@@ -19,7 +19,7 @@ public class Session {
     private String username;
     private String type;
     private String status;
-    private String tast;
+    private String task;
     
     private Session(){
      //Private cons.prevents instance       
@@ -98,5 +98,11 @@ public class Session {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+        public String getTask() {
+        return task;
+    }
+
+    public void setTask(String task) {
+        this.task = task;
+    }
 }  

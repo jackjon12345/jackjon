@@ -34,7 +34,7 @@ public class usersForm extends javax.swing.JFrame {
     public void displayData(){
         try{
             dbConnector dbc = new dbConnector();
-            ResultSet rs = dbc.getData("SELECT u_id, u_fname, u_lname, u_email, u_status,u_tast FROM tbl_user");
+            ResultSet rs = dbc.getData("SELECT u_id, u_fname, u_lname, u_email, u_status,u_task FROM tbl_user");
             usersTable.setModel(DbUtils.resultSetToTableModel(rs));
              rs.close();
         }catch(SQLException ex){
@@ -248,7 +248,7 @@ public class usersForm extends javax.swing.JFrame {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(0, 0, 670, 70);
 
-        jPanel4.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -349,9 +349,7 @@ public class usersForm extends javax.swing.JFrame {
              }catch(SQLException ex){
                  System.out.println(""+ex);
              }
-
             }
- 
     }//GEN-LAST:event_p_add1MouseClicked
 
     private void p_add1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add1MouseEntered
@@ -363,24 +361,9 @@ public class usersForm extends javax.swing.JFrame {
     }//GEN-LAST:event_p_add1MouseExited
 
     private void p_add2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add2MouseClicked
-     int rowIndex = usersTable.getSelectedRow();
-         
-         if(rowIndex <0){
-            JOptionPane.showMessageDialog(null,"Please select an Item!");
-        }else{
-             try{
-                 dbConnector dbc = new dbConnector();
-                 TableModel tbl = usersTable.getModel();
-                 ResultSet rs=dbc.getData("SELECT * FROM tbl_user WHERE u_id='"+tbl.getValueAt(rowIndex,0)+"'");
-                 if(rs.next()){
-                  usertast crf = new usertast();              crf.setVisible(true);
-                  this.dispose();
-                 }
-             }catch(SQLException ex){
-                 System.out.println(""+ex);
-             }
-
-            }
+    usertask ask = new usertask();
+    ask.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_p_add2MouseClicked
 
     private void p_add2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add2MouseEntered
