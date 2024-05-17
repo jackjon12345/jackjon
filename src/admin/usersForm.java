@@ -34,7 +34,7 @@ public class usersForm extends javax.swing.JFrame {
     public void displayData(){
         try{
             dbConnector dbc = new dbConnector();
-            ResultSet rs = dbc.getData("SELECT u_id, u_fname, u_lname, u_email, u_status,u_task FROM tbl_user");
+            ResultSet rs = dbc.getData("SELECT u_id, u_fname, u_lname, u_email, u_status,u_task,u_done FROM tbl_user");
             usersTable.setModel(DbUtils.resultSetToTableModel(rs));
              rs.close();
         }catch(SQLException ex){
@@ -361,9 +361,32 @@ public class usersForm extends javax.swing.JFrame {
     }//GEN-LAST:event_p_add1MouseExited
 
     private void p_add2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add2MouseClicked
-    usertask ask = new usertask();
-    ask.setVisible(true);
-    this.dispose();
+    int rowIndex = usersTable.getSelectedRow();
+         
+         if(rowIndex <0){
+            JOptionPane.showMessageDialog(null,"Please select an Item!");
+        }else{
+             try{
+                 dbConnector dbc = new dbConnector();
+                 TableModel tbl = usersTable.getModel();
+                 ResultSet rs=dbc.getData("SELECT * FROM tbl_user WHERE u_id='"+tbl.getValueAt(rowIndex,0)+"'");
+                 if(rs.next()){
+                  usertask crf = new usertask();
+                  crf.uid.setText(""+rs.getString("u_id"));
+                  crf.fn.setText(""+rs.getString("u_fname"));
+                  crf.ln.setText(""+rs.getString("u_lname"));
+                  crf.em.setText(""+rs.getString("u_email"));
+                  crf.un.setText(""+rs.getString("u_username"));
+                  crf.ps.setText(""+rs.getString("u_password"));
+                  crf.add.setEnabled(false);
+                  crf.update.setEnabled(true);
+                  crf.setVisible(true);
+                  this.dispose();
+                 }
+             }catch(SQLException ex){
+                 System.out.println(""+ex);
+             }
+            }
     }//GEN-LAST:event_p_add2MouseClicked
 
     private void p_add2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add2MouseEntered
