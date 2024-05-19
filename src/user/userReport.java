@@ -5,8 +5,11 @@
  */
 package user;
 
-import admin.*;
+
+import admin.usersForm;
 import config.Session;
+import config.dbConnector;
+
 import javax.swing.JOptionPane;
 import testappd.loginForm;
 
@@ -21,7 +24,10 @@ public class userReport extends javax.swing.JFrame {
      */
     public userReport() {
         initComponents();
-    }
+    
+
+}
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,6 +43,7 @@ public class userReport extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         acc_name = new javax.swing.JLabel();
         acc_Lname = new javax.swing.JLabel();
+        dn = new javax.swing.JButton();
         acc_lname = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,8 +68,13 @@ public class userReport extends javax.swing.JFrame {
         acc_Lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acc_Lname.setText("USER");
 
-        acc_lname.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        acc_lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dn.setText("DONE");
+        dn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnActionPerformed(evt);
+            }
+        });
+
         acc_lname.setText("USER");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -78,9 +90,13 @@ public class userReport extends javax.swing.JFrame {
                             .addComponent(acc_name, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(acc_lname, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                        .addGap(288, 288, 288)
+                        .addComponent(dn)))
+                .addContainerGap(296, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(acc_lname, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(311, 311, 311))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,9 +107,11 @@ public class userReport extends javax.swing.JFrame {
                 .addComponent(acc_name)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(acc_Lname)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(acc_lname, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(acc_lname)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addComponent(dn)
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
@@ -117,15 +135,30 @@ public class userReport extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
  
     Session sess = Session.getInstance();
-        if(sess.getUid() ==0){
-           loginForm lf = new loginForm();
-           lf.setVisible(true);
-           this.dispose();
-        }
-        acc_name.setText(""+sess.getFname());
-        acc_Lname.setText(""+sess.getLname());
-        acc_lname.setText(""+sess.getTask());
+ if (sess.getUid() == 0) {
+        loginForm lf = new loginForm();
+        lf.setVisible(true);
+        this.dispose();
+    } 
+        acc_name.setText("" + sess.getFname());
+        acc_Lname.setText("" + sess.getLname());
+        acc_lname.setText("" + sess.getTask());
+    
     }//GEN-LAST:event_formWindowActivated
+
+    private void dnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnActionPerformed
+        
+        if(dn.getText().isEmpty()){
+        }else{
+        
+       dbConnector dbc = new dbConnector();
+       dbc.updateData("UPDATE tbl_user SET u_Done='"+dn.getText()+"'");
+      
+            usersForm uf = new usersForm();
+            uf.setVisible(true);
+            this.dispose();
+    }
+    }//GEN-LAST:event_dnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,6 +200,7 @@ public class userReport extends javax.swing.JFrame {
     private javax.swing.JLabel acc_Lname;
     private javax.swing.JLabel acc_lname;
     private javax.swing.JLabel acc_name;
+    private javax.swing.JButton dn;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

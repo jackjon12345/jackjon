@@ -104,5 +104,7 @@ public class Session {
 
     public void setTask(String task) {
         this.task = task;
+        instance.task = "some task";
     }
+    
 }  
