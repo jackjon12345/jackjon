@@ -68,7 +68,7 @@ public class changePass extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-user-50.png"))); // NOI18N
@@ -166,7 +166,7 @@ public class changePass extends javax.swing.JFrame {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(0, 0, 670, 70);
 
-        jPanel4.setBackground(new java.awt.Color(0, 255, 0));
+        jPanel4.setBackground(new java.awt.Color(204, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Type Old Pass:");
@@ -177,7 +177,7 @@ public class changePass extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Confirm Pass:");
 
-        jPanel5.setBackground(new java.awt.Color(51, 153, 0));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(null);
 
         acc_name2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -191,7 +191,12 @@ public class changePass extends javax.swing.JFrame {
         jPanel5.add(acc_name2);
         acc_name2.setBounds(-1, -3, 60, 40);
 
-        jPanel6.setBackground(new java.awt.Color(51, 153, 0));
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel6MouseClicked(evt);
+            }
+        });
         jPanel6.setLayout(null);
 
         acc_name3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -299,6 +304,12 @@ public class changePass extends javax.swing.JFrame {
         System.out.println(""+ex);
         }
     }//GEN-LAST:event_acc_name2MouseClicked
+
+    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+        accountDetails ads = new accountDetails();
+        ads.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jPanel6MouseClicked
 
     /**
      * @param args the command line arguments
