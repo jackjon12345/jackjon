@@ -44,7 +44,7 @@ public class userReport extends javax.swing.JFrame {
         acc_name = new javax.swing.JLabel();
         acc_Lname = new javax.swing.JLabel();
         dn = new javax.swing.JButton();
-        acc_lname = new javax.swing.JLabel();
+        acc_task = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -75,9 +75,9 @@ public class userReport extends javax.swing.JFrame {
             }
         });
 
-        acc_lname.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        acc_lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acc_lname.setText("USER");
+        acc_task.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        acc_task.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        acc_task.setText("USER");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -94,7 +94,7 @@ public class userReport extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(288, 288, 288)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(acc_lname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(acc_task, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(dn)
@@ -111,7 +111,7 @@ public class userReport extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(acc_Lname)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(acc_lname, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(acc_task, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dn)
                 .addContainerGap(167, Short.MAX_VALUE))
@@ -137,15 +137,17 @@ public class userReport extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
  
-    Session sess = Session.getInstance();
- if (sess.getUid() == 0) {
-        loginForm lf = new loginForm();
-        lf.setVisible(true);
-        this.dispose();
-    } 
-        acc_name.setText("" + sess.getFname());
-        acc_Lname.setText("" + sess.getLname());
-        acc_lname.setText("" + sess.getTask());
+   Session sess = Session.getInstance();
+if (sess.getUid() == 0) {
+    loginForm lf = new loginForm();
+    lf.setVisible(true);
+    this.dispose();
+} else {
+   
+    acc_name.setText("" + sess.getFname());
+    acc_Lname.setText("" + sess.getLname());
+    acc_task.setText("" + sess.getTask()); 
+}
     
     }//GEN-LAST:event_formWindowActivated
 
@@ -201,8 +203,8 @@ public class userReport extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acc_Lname;
-    private javax.swing.JLabel acc_lname;
     private javax.swing.JLabel acc_name;
+    private javax.swing.JLabel acc_task;
     private javax.swing.JButton dn;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
